@@ -27,3 +27,14 @@ class User(AbstractUser):
     
         super(User, self).save(*args, **kwargs)
 
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    image = models.FileField(upload_to="image", default="default/default-user.jpg", null=True, blank=True)
+    full_name = models.CharField(max_length=100, null=True, blank=True)
+    bio = models.TextField(null=True, blank=True)
+    about = models.TextField(null=True, blank=True)
+    author = models.BooleanField(default=False)
+    country = models.CharField(max_length=100, null=True, blank=True)
+    facebook = models.CharField(max_length=100, null=True, blank=True)
+    twitter = models.CharField(max_length=100, null=True, blank=True)
+    date = models.DateTimeField(auto_now_add=True)
