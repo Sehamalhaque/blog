@@ -18,6 +18,9 @@ class User(AbstractUser):
     REQUIRED_FIELDS = ['username']
     
     
+    def __str__(self):
+        return self.email
+    
     def save(self, *args, **kwargs):
         email_username, mobile = self.email.split("@")
         if self.full_name == "" or self.full_name == None:
@@ -38,3 +41,15 @@ class Profile(models.Model):
     facebook = models.CharField(max_length=100, null=True, blank=True)
     twitter = models.CharField(max_length=100, null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True)
+    
+    
+    
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()
+
+post_save.connect(create_user_profile, sender=User)
+post_save.connect(save_user_profile, sender=User)
