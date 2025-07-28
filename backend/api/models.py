@@ -41,7 +41,17 @@ class Profile(models.Model):
     facebook = models.CharField(max_length=100, null=True, blank=True)
     twitter = models.CharField(max_length=100, null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        if self.full_name:
+            return str(self.full_name)
+        else:
+            return str(self.user.full_name)
     
+
+    def save(self, *args, **kwargs):
+        if self.full_name == "" or self.full_name == None:
+            self.full_name = self.user.full_name
+        super(Profile, self).save(*args, **kwargs)
     
     
 def create_user_profile(sender, instance, created, **kwargs):
