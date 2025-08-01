@@ -15,6 +15,7 @@ from datetime import timedelta
 
 
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -180,6 +181,7 @@ SIMPLE_JWT = {
 
 
 CORS_ALLOW_ALL_ORIGINS = True
+AUTH_USER_MODEL = 'api.User'
 
 
 JAZZMIN_SETTINGS = {
