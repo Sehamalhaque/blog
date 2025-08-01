@@ -185,8 +185,8 @@ AUTH_USER_MODEL = 'api.User'
 
 
 JAZZMIN_SETTINGS = {
-    "site_title": "Desphixs",
-    "site_header": "Desphixs",
+    "site_title": "blogit",
+    "site_header": "blogit",
     "site_brand": "Modern Marketplace ",
     # "site_icon": "images/favicon.ico",
     # "site_logo": "images/logos/logo.jpg",
